@@ -2,7 +2,8 @@ var gulp = require('gulp'),
     usemin = require('gulp-usemin'),        //  用来将HTML文件中（或者templates/views）中没有优化的script 和stylesheets 替换为优化过的版本
 
     connect = require('gulp-connect'),      // 简单的web server, 用于刷新页面
-    watch = require('gulp-watch'),          //
+    watch = require('gulp-watch'),          // 监听任务, 一般都要
+    sourcemaps = require('gulp-sourcemaps'),// 谷歌调试神器
     minifyCss = require('gulp-cssnano'),    // 压缩css
     minifyJs = require('gulp-uglify'),      // 压缩js
     concat = require('gulp-concat'),        // 合并js
@@ -87,8 +88,10 @@ gulp.task('custom-images', function() {
 
 gulp.task('custom-js', function() {
     return gulp.src(paths.scripts)
+        .pipe(sourcemaps.init())// 所有插件在 init 和 write 之间, 需要插件支持
         .pipe(minifyJs())
         .pipe(concat('dashboard.min.js'))
+        .pipe(sourcemaps.write('.'))// 当前目录生成 .map 文件
         .pipe(gulp.dest(destPath.jsDest));
 });
 

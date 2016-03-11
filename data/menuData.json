@@ -1,0 +1,17 @@
+
+[
+  {
+    "name": "DashBoard",
+    "route": "/",
+    "icon": "fa-tachometer",
+    "key4": "value4"
+  },
+  {
+    "name": "Tables",
+    "route": "/tables",
+    "icon": "fa-table",
+    "key4": "value4"
+  }
+
+]
+

@@ -10,15 +10,20 @@ function MasterCtrl($scope, $cookieStore, $http) {
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
-
+    console.log(new Date().getTime());
     var promise = $http.get('/data/data.json');
+    console.log(new Date().getTime());
+
     promise.then(function(data) {
         console.log(data);
+        console.log(new Date().getTime());
 
     });
 
     promise.then(function(data) {
         console.log(data);
+        console.log(new Date().getTime());
+
     });
 
     $scope.getWidth = function() {
