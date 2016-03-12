@@ -51,4 +51,14 @@ function MasterCtrl($scope, $cookieStore, $http) {
     window.onresize = function() {
         $scope.$apply();
     };
+
+    // controller里面别出现dom操作，特别是prepend,append 这些，
+    // 因为未被编译过的dom对象是没法被watch的，
+    // angularjs不会监视那些后来加入又没有被编译过的dom对象。
+    // 比 link 先执行, 作用是为了指令之间交互
+    // 业务逻辑[不要]写在driective自己的controller里， 而是在它绑定的scope的那个controller上
+    $http.get('../data/menuData.json').success(function(data, status, header, config) {
+        $scope.menus = data
+    });
+    $scope.menus = [];
 }

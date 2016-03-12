@@ -1,13 +1,13 @@
 
 [
   {
-    "name": "DashBoard",
+    "name": "用户管理",
     "route": "/",
     "icon": "fa-tachometer",
     "key4": "value4"
   },
   {
-    "name": "Tables",
+    "name": "权限管理",
     "route": "/tables",
     "icon": "fa-table",
     "key4": "value4"
