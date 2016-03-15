@@ -26,7 +26,7 @@
 
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-      <ul class="sidebar">
+      <ul class="sidebar" ng-controller="SidebarMenuCtrl">
         <li class="sidebar-main">
           <a ng-click="toggleSidebar()">
             xx管理系统
@@ -34,7 +34,7 @@
           </a>
         </li>
         <li class="sidebar-title"><span>my admin</span></li>
-        <side-bar-menu  ng-repeat="menu in menus"></side-bar-menu>
+        <side-bar-menu ng-repeat="menu in menus"></side-bar-menu>
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">

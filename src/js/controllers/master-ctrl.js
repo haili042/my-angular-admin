@@ -3,37 +3,23 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', '$http', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$cookieStore', 'sidebarMenuService', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore, $http) {
+function MasterCtrl($scope, $cookieStore, sidebarMenuService) {
     /**
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
-    console.log(new Date().getTime());
-    var promise = $http.get('/data/data.json');
-    console.log(new Date().getTime());
-
-    promise.then(function(data) {
-        console.log(data);
-        console.log(new Date().getTime());
-
-    });
-
-    promise.then(function(data) {
-        console.log(data);
-        console.log(new Date().getTime());
-
-    });
 
     $scope.getWidth = function() {
         return window.innerWidth;
     };
 
-    $scope.$watch($scope.getWidth, function(newValue, oldValue) {
+    // 第一个参数是监视的对象, 第二个参数是回调函数
+    $scope.$watch($scope.getWidth, function(newValue, oldValue) { // 监视model 的变化
         if (newValue >= mobileView) {
             if (angular.isDefined($cookieStore.get('toggle'))) {
-                $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
+                $scope.toggle = !$cookieStore.get('toggle') ? false : true;
             } else {
                 $scope.toggle = true;
             }
@@ -45,20 +31,11 @@ function MasterCtrl($scope, $cookieStore, $http) {
 
     $scope.toggleSidebar = function() {
         $scope.toggle = !$scope.toggle;
-        $cookieStore.put('toggle', $scope.toggle);
+        $cookieStore.put('toggle', $scope.toggle); // 保存到 cookie 中
     };
 
-    window.onresize = function() {
-        $scope.$apply();
+    window.onresize = function() { // 在AngularJS上下文之外的修改了model，需要手动调用$apply()来通知AngularJS
+        $scope.$apply(); // 传播Model的变化
     };
 
-    // controller里面别出现dom操作，特别是prepend,append 这些，
-    // 因为未被编译过的dom对象是没法被watch的，
-    // angularjs不会监视那些后来加入又没有被编译过的dom对象。
-    // 比 link 先执行, 作用是为了指令之间交互
-    // 业务逻辑[不要]写在driective自己的controller里， 而是在它绑定的scope的那个controller上
-    $http.get('../data/menuData.json').success(function(data, status, header, config) {
-        $scope.menus = data
-    });
-    $scope.menus = [];
 }

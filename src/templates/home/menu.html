@@ -1,5 +1,15 @@
 <li class="sidebar-list">
-    <a href="#{{menu.route}}">{{menu.name}}
+    <a href="#" ng-click="menuExpend()">{{menu.name}}
         <span class="menu-icon fa {{menu.icon}}"></span>
     </a>
+    <ul isHide="isMenuExpend" ng-hide="isMenuExpend">
+        <li>
+            <a href="#{{menu.route}}">{{menu.name}}
+                <span class="menu-icon fa {{menu.icon}}"></span>
+            </a>
+            <a href="#{{menu.route}}">{{menu.name}}
+                <span class="menu-icon fa {{menu.icon}}"></span>
+            </a>
+        </li>
+    </ul>
 </li>
