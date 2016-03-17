@@ -23,5 +23,4 @@ function sidebarMenuService($http, $q) {
 
     };
 
-
 }
