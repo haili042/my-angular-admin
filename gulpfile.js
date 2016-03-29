@@ -1,4 +1,4 @@
-var gulp = require('gulp'),
+﻿var gulp = require('gulp'),
     usemin = require('gulp-usemin'),        //  用来将HTML文件中（或者templates/views）中没有优化的script 和stylesheets 替换为优化过的版本
 
     connect = require('gulp-connect'),      // 简单的web server, 用于刷新页面
